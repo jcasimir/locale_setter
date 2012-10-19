@@ -3,7 +3,11 @@ module LocaleSetter
     attr_accessor :i18n
 
     def default_url_options(options)
-      {:locale => ""}.merge(options)
+      if i18n.locale == i18n.default_locale
+        options
+      else
+        {:locale => i18n.locale}.merge(options)
+      end
     end
 
     def i18n

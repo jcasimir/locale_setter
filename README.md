@@ -1,6 +1,21 @@
 # LocaleSetter
 
-TODO: Write a gem description
+`LocaleSetter` sets the locale for the current request in a Rails application.
+
+## Rationale
+
+One of the challenges with internationalization is knowing which locale a user actually wants. We recommend the following hierarchy of sources:
+
+1. URL Parameter
+2. User Preference
+3. HTTP Headers
+4. Default
+
+### URL Parameter
+
+As a developer or designer, it's incredibly handy to be able to manipulate the URL to change locales. You might even use this with CI to run your integration tests using each locale you support.
+
+The parameter `locale` will be appended to every link.
 
 ## Installation
 

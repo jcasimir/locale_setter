@@ -39,6 +39,16 @@ describe LocaleSetter do
       result = controller.default_url_options({:locale => 'abc'})
       result[:locale].should == 'abc'
     end
+
+    it "doesn't appent a locale if it's the default" do
+      controller.i18n.locale = controller.i18n.default_locale
+      controller.default_url_options({})[:locale].should_not be
+    end
+
+    it "appends a locale when not the default" do
+      controller.i18n.locale = :sample
+      controller.default_url_options({})[:locale].should == :sample
+    end
   end
 
   describe "#set_locale" do
