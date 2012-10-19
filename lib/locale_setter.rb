@@ -1,7 +1,9 @@
 require "locale_setter/version"
+require "locale_setter/matcher"
 require "locale_setter/rails"
 require "locale_setter/http"
 require "locale_setter/user"
+require "locale_setter/param"
 
 module LocaleSetter
   include LocaleSetter::Rails
@@ -13,8 +15,10 @@ module LocaleSetter
   end
 
   def set_locale
-    i18n.locale = from_user ||
-                  from_http
+    i18n.locale = from_params ||
+                  from_user   ||
+                  from_http   ||
+                  i18n.default_locale
   end
 
   def from_user
@@ -26,6 +30,12 @@ module LocaleSetter
   def from_http
     if respond_to?(:request) && request.env
       LocaleSetter::HTTP.for(request.env['HTTP_ACCEPT_LANGUAGE'])
+    end
+  end
+
+  def from_params
+    if respond_to?(:params) && params[:locale]
+      LocaleSetter::Param.for(params[:locale])
     end
   end
 end

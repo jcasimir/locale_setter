@@ -8,7 +8,6 @@ describe LocaleSetter do
   class BareController; end
 
   describe ".included" do
-
     it "sets a before filter" do
       BareController.should_receive(:before_filter).with(:set_locale)
       BareController.send(:include, LocaleSetter)
@@ -24,20 +23,6 @@ describe LocaleSetter do
   end
 
   let(:controller){ Controller.new }
-
-  describe "#i18n" do
-    it "uses the pre-set i18n library" do
-      stand_in = OpenStruct
-      controller.i18n = stand_in
-      controller.i18n.should == stand_in
-    end
-
-    class I18n; end
-
-    it "uses the default I18n library when not overridden" do
-      controller.i18n.should == I18n
-    end
-  end
 
   describe "#default_url_options" do
     it "adds a :locale key" do
@@ -57,6 +42,15 @@ describe LocaleSetter do
   end
 
   describe "#set_locale" do
+    context "with nothing" do
+      let(:controller){ Controller.new }
+
+      it "uses the default" do
+        controller.set_locale
+        controller.i18n.locale.should == controller.i18n.default_locale
+      end
+    end
+
     context "with HTTP headers" do
       let(:controller){ HTTPController.new }
 
@@ -100,6 +94,45 @@ describe LocaleSetter do
         controller.set_locale
         controller.i18n.locale.should == :user_specified
       end
+    end
+
+    context "with url parameters" do
+      let(:controller){ ParamController.new }
+
+      before(:each) do
+        controller.i18n.available_locales = [:en, :param_specified]
+      end
+
+      class ParamController < Controller
+        def params
+          {:locale => "param_specified"}
+        end
+      end
+
+      it "uses the URL parameter" do
+        controller.set_locale
+        controller.i18n.locale.should == :param_specified
+      end
+
+      it "only allows supported locales" do
+        controller.i18n.available_locales = [:en]
+        controller.set_locale
+        controller.i18n.locale.should == controller.i18n.default_locale
+      end
+    end
+  end
+
+  describe "#i18n" do
+    it "uses the pre-set i18n library" do
+      stand_in = OpenStruct
+      controller.i18n = stand_in
+      controller.i18n.should == stand_in
+    end
+
+    class I18n; end
+
+    it "uses the default I18n library when not overridden" do
+      controller.i18n.should == I18n
     end
   end
 end

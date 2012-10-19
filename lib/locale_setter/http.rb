@@ -1,9 +1,7 @@
 module LocaleSetter
   module HTTP
     def self.for(accept_language)
-      requested = AcceptLanguageParser.parse(accept_language)
-      available = I18n.available_locales
-      (requested & available).first
+      LocaleSetter::Matcher.match(AcceptLanguageParser.parse(accept_language))
     end
 
     module AcceptLanguageParser

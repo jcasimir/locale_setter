@@ -14,4 +14,12 @@ class I18n
   def self.available_locales=(input)
     @@available_locales = input
   end
+
+  def self.default_locale
+    @@default_locale ||= :default
+  end
+
+  def self.default_locale=(input)
+    @@default_locale = input
+  end
 end
