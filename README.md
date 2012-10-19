@@ -4,22 +4,30 @@
 
 ## Installation
 
+### Gem Installation
+
 Add this line to your application's Gemfile:
 
 ```
 gem 'locale_setter'
 ```
 
-And then execute:
+Then execute:
 
 ```
 $ bundle
 ```
 
-Or install it yourself as:
+### Application Configuration
+
+Include the module in your `app/controllers/application_controller.rb`:
 
 ```
-$ gem install locale_setter
+class ApplicationController < ActionController::Base
+  protect_from_forgery
+
+  include LocaleSetter
+end
 ```
 
 ## How It Works
