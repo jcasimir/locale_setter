@@ -104,9 +104,6 @@ describe LocaleSetter do
         controller.set_locale
         controller.i18n.locale.should == :user_specified
       end
-
-      it "ignores a blank stored locale"
-      it "ignores a stored locale that is not available"
     end
 
     context "with url parameters" do

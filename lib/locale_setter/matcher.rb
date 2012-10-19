@@ -5,8 +5,16 @@ module LocaleSetter
       matched.to_sym if matched
     end
 
-    def self.sanitize(locales)
-      locales.map{|l| l.downcase.strip}
+    def self.sanitize(input)
+      if input.respond_to? :map
+        input.map{|l| sanitize_one(l)}
+      else
+        [sanitize_one(input)]
+      end
+    end
+
+    def self.sanitize_one(locale)
+      locale.to_s.downcase.strip
     end
 
     def self.available
