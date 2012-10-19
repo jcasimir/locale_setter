@@ -2,7 +2,7 @@ module LocaleSetter
   module Rails
     attr_accessor :i18n
 
-    def default_url_options(options)
+    def default_url_options(options = {})
       if i18n.locale == i18n.default_locale
         options
       else

@@ -29,6 +29,10 @@ describe LocaleSetter do
       controller.default_url_options({})[:locale].should be
     end
 
+    it "does not require a parameter" do
+      expect{ controller.default_url_options }.to_not raise_error
+    end
+
     it "builds on passed in options" do
       result = controller.default_url_options({:test => true})
       result[:test].should be
