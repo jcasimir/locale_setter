@@ -70,7 +70,7 @@ describe LocaleSetter do
 
       class HTTPController < Controller
         def request
-          OpenStruct.new(:env => {'HTTP_ACCEPT_LANGUAGE' => "es;en"})
+          OpenStruct.new(:env => {'HTTP_ACCEPT_LANGUAGE' => "es,en"})
         end
       end
 

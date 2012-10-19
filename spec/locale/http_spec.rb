@@ -13,7 +13,7 @@ describe "LocaleSetter::HTTP" do
 
       context "given two acceptable locales" do
         it "returns :en" do
-          LocaleSetter::HTTP.for("en;es").should == :en
+          LocaleSetter::HTTP.for("en,es").should == :en
         end
       end
     end
@@ -21,9 +21,9 @@ describe "LocaleSetter::HTTP" do
     context "when the first choice is not supported" do
       before(:each){ I18n.available_locales = [:es] }
       
-      context "given 'en;es'" do
+      context "given 'en,es'" do
         it "returns :es" do
-          LocaleSetter::HTTP.for("en;es").should == :es
+          LocaleSetter::HTTP.for("en,es").should == :es
         end
       end
     end
@@ -32,11 +32,11 @@ describe "LocaleSetter::HTTP" do
       before(:each){ I18n.available_locales = [:en, :es] }
 
       it "returns :en" do
-        LocaleSetter::HTTP.for("en,1;es,0.8").should == :en
+        LocaleSetter::HTTP.for("en;1,es;0.8").should == :en
       end
 
       it "handles misordered preferences" do
-        LocaleSetter::HTTP.for("es,0.8;en,1").should == :en
+        LocaleSetter::HTTP.for("es;0.8,en;1").should == :en
       end
     end
   end

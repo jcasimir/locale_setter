@@ -5,8 +5,12 @@ module LocaleSetter
     end
 
     module AcceptLanguageParser
+      LOCALE_SEPARATOR = ','
+      WEIGHT_SEPARATOR = ';'
+
       def self.parse(accept_language)
-        weighted_fragments = accept_language.split(";").map{|f| f.split(",")}
+        locale_fragments = accept_language.split(LOCALE_SEPARATOR)
+        weighted_fragments = locale_fragments.map{|f| f.split(WEIGHT_SEPARATOR)}
         sorted_fragments = weighted_fragments.sort_by{|f| -f.last.to_f }
         sorted_fragments.map{|locale, weight| locale}
       end
