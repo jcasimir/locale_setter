@@ -119,6 +119,15 @@ describe LocaleSetter do
         controller.set_locale
         controller.i18n.locale.should == controller.i18n.default_locale
       end
+
+      it "does not pollute the symbol table when given an unsuported locale" do
+        class BadParamController < Controller
+          def params
+            {:locale => "bad_param"}
+          end
+        end
+        expect { BadParamController.new.set_locale }.to_not change{ Symbol.all_symbols.count }
+      end
     end
   end
 

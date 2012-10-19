@@ -1,7 +1,7 @@
 module LocaleSetter
   module Param
     def self.for(param)
-      LocaleSetter::Matcher.match([param.to_sym])
+      LocaleSetter::Matcher.match([param])
     end
   end
 end
