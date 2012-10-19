@@ -8,9 +8,9 @@ Gem::Specification.new do |gem|
   gem.version       = LocaleSetter::VERSION
   gem.authors       = ["Jeff Casimir"]
   gem.email         = ["jeff@casimircreative.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = "Automatically set per-request locale in Rails applications"
+  gem.summary       = "Automatically set per-request locale in Rails applications"
+  gem.homepage      = "http://github.com/jcasimir/locale_setter"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

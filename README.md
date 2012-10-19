@@ -125,3 +125,11 @@ The sample string above means...
 ### Default
 
 Finally, if none of those previous options worked, the library will fall back to the currently specified `I18n.default_locale`.
+
+## Contributing
+
+This library is considered "experimental" quality. Your feedback would be very welcome! Pull requests are great, but issues are good too.
+
+## License
+
+Please see the included LICENSE.txt
