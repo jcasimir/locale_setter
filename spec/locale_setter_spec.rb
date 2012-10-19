@@ -57,10 +57,10 @@ describe LocaleSetter do
   end
 
   describe "#set_locale" do
-    let(:controller){ Controller.new }
-
     context "with HTTP headers" do
-      class Controller
+      let(:controller){ HTTPController.new }
+
+      class HTTPController < Controller
         def request
           OpenStruct.new(:env => {'HTTP_ACCEPT_LANGUAGE' => "es;en"})
         end
@@ -75,6 +75,30 @@ describe LocaleSetter do
         I18n.available_locales = [:arr, :en]
         controller.set_locale
         controller.i18n.locale.should == :en
+      end
+    end
+
+    context "with a current_user who has a locale" do
+      let(:controller){ UserController.new }  
+
+      before(:each) do
+        controller.i18n.available_locales = [:en, :user_specified]
+      end
+
+      class UserController < HTTPController
+        def current_user
+          OpenStruct.new({:locale => :user_specified})
+        end
+      end
+
+      it "prioritizes the current_user preference over HTTP" do
+        LocaleSetter::HTTP.should_not_receive(:for)
+        controller.set_locale
+      end
+
+      it "uses the stored locale" do
+        controller.set_locale
+        controller.i18n.locale.should == :user_specified
       end
     end
   end
