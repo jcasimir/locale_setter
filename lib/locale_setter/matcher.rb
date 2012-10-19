@@ -1,8 +1,12 @@
 module LocaleSetter
   module Matcher
-    def self.match(requested)
-      matched = (requested & available).first
+    def self.match(requested, against = available)
+      matched = (sanitize(requested) & against).first
       matched.to_sym if matched
+    end
+
+    def self.sanitize(locales)
+      locales.map{|l| l.downcase.strip}
     end
 
     def self.available
