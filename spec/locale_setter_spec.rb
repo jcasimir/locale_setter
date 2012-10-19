@@ -84,6 +84,17 @@ describe LocaleSetter do
         controller.set_locale
         controller.i18n.locale.should == :en
       end
+
+      it "does nothing when HTTP_ACCEPT_LANGUAGE is missing" do
+        class BlankHTTPController < Controller
+          def request
+            OpenStruct.new(:env => {})
+          end
+        end
+        
+        blank = BlankHTTPController.new
+        blank.set_locale.should == blank.i18n.default_locale
+      end
     end
 
     context "with a current_user who has a locale" do

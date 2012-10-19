@@ -28,7 +28,7 @@ module LocaleSetter
   end
 
   def from_http
-    if respond_to?(:request) && request.env
+    if respond_to?(:request) && request.env && request.env['HTTP_ACCEPT_LANGUAGE']
       LocaleSetter::HTTP.for(request.env['HTTP_ACCEPT_LANGUAGE'])
     end
   end
