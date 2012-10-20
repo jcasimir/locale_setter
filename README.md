@@ -18,7 +18,7 @@ Then execute:
 $ bundle
 ```
 
-### Application Configuration
+### Rails Application Configuration
 
 Include the module in your `app/controllers/application_controller.rb`:
 
@@ -26,11 +26,31 @@ Include the module in your `app/controllers/application_controller.rb`:
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  include LocaleSetter
+  include LocaleSetter::Rails
 end
 ```
 
-*Note:* If you have before filters or a module that handles user authentication, have that _above_ the `include LocaleSetter` so it happens first.
+*Note:* If you have before filters or a module that handles user authentication, have that _above_ this new `include` so it happens first.
+
+### Non-Rails Applications
+
+The library can be used outside of Rails by accessing `LocaleSetter::Generic` directly. You need to pass in your I18n class and the data sources, like this:
+
+```
+# Example Input Data
+request = {'HTTP_ACCEPT_LANGUAGE' = 'en,es;0.6'}
+params  = {:locale = 'en'}
+user    = User.first
+i18n    = I18n 
+
+# Set the .locale of I18n
+LocaleSetter::Generic.set_locale(i18n,
+                                {:env => request,
+                                 :params => params,
+                                 :user => user})
+```
+
+The `i18n.locale=` will be called with the local selected from the passed data. `:env`, `:params`, and `:user` are all optional.
 
 ## How It Works
 
