@@ -5,7 +5,9 @@ describe LocaleSetter::Rails do
     expect{ LocaleSetter::Rails }.to_not raise_error
   end
 
-  class BareController; end
+  class BareController
+    def self.before_filter(name); end
+  end
 
   describe ".included" do
     it "sets a before filter" do
@@ -18,7 +20,7 @@ describe LocaleSetter::Rails do
     end
   end
 
-  class Controller
+  class Controller < BareController
     include LocaleSetter::Rails
   end
 
