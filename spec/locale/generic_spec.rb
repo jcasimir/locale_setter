@@ -17,18 +17,18 @@ describe LocaleSetter::Generic do
 
       it "makes use of the HTTP headers" do
         i18n.available_locales = [:en, :es]
-        setter.set_locale(i18n, {:request_env => request})
+        setter.set_locale(i18n, {:env => request})
         i18n.locale.should == :es
       end
 
       it "only sets an available locale" do
         i18n.available_locales = [:arr, :en]
-        setter.set_locale(i18n, {:request_env => request})
+        setter.set_locale(i18n, {:env => request})
         i18n.locale.should == :en
       end
 
       it "does nothing when HTTP_ACCEPT_LANGUAGE is missing" do
-        setter.set_locale(i18n, {:request_env => {}})
+        setter.set_locale(i18n, {:env => {}})
         i18n.locale.should == i18n.default_locale
       end
     end

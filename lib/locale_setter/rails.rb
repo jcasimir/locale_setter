@@ -21,9 +21,9 @@ module LocaleSetter
     def set_locale
       LocaleSetter::Generic.set_locale(
         i18n,
-        {:params  => params,
-         :user    => locale_user,
-         :request => request.env}
+        {:params => params,
+         :user   => locale_user,
+         :env    => request.env}
       )
     end
 

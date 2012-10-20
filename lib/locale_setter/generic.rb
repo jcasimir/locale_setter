@@ -1,13 +1,13 @@
 module LocaleSetter
   module Generic
 
-    def self.set_locale(i18n, options = {:params      => nil,
-                                         :user        => nil,
-                                         :request_env => nil})
+    def self.set_locale(i18n, options = {:params => nil,
+                                         :user   => nil,
+                                         :env    => nil})
 
       i18n.locale = from_params(options[:params], available(i18n))    ||
                     from_user(options[:user], available(i18n))        ||
-                    from_http(options[:request_env], available(i18n)) ||
+                    from_http(options[:env], available(i18n)) ||
                     i18n.default_locale
     end
 
@@ -19,9 +19,9 @@ module LocaleSetter
       LocaleSetter::User.for(user, available) if user
     end
 
-    def self.from_http(request_env, available)
-      if request_env && request_env[HTTP_HEADER]
-        LocaleSetter::HTTP.for(request_env[HTTP_HEADER], available)
+    def self.from_http(env, available)
+      if env && env[HTTP_HEADER]
+        LocaleSetter::HTTP.for(env[HTTP_HEADER], available)
       end
     end
 
