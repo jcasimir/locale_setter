@@ -8,7 +8,7 @@
 
 Add this line to your application's Gemfile:
 
-```
+```ruby
 gem 'locale_setter'
 ```
 
@@ -22,13 +22,15 @@ $ bundle
 
 Include the module in your `app/controllers/application_controller.rb`:
 
-```
+```ruby
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
   include LocaleSetter
 end
 ```
+
+*Note:* If you have before filters or a module that handles user authentication, have that _above_ the `include LocaleSetter` so it happens first.
 
 ## How It Works
 
@@ -117,7 +119,7 @@ Remember that you may need to modify the `user.rb` if you're filtering mass-assi
 Every request coming into your web server includes a ton of header information. One key/value pair looks like this:
 
 ```
-HTTP_ACCEPT_LANGUAGE='en-US;en,0.8;es,0.4'
+HTTP_ACCEPT_LANGUAGE='en-US,en;0.8,es;0.4'
 ```
 
 This string is created and sent by the user's browser. Most users have never configured it, the browser just picks it up from the host OS. It can usually be controlled through some kind of advanced preference pane.
