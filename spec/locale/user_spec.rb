@@ -13,8 +13,8 @@ describe 'LocaleSetter::User' do
     end
 
     it "only tries current_user if it offers a locale" do
-      no_locale = OpenStruct.new()
-      LocaleSetter::User.for(no_locale).should_not be
+      class NoLocaleUser; end
+      LocaleSetter::User.for(NoLocaleUser.new).should_not be
     end
   end
 end
