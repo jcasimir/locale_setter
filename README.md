@@ -140,6 +140,10 @@ Finally, if none of those previous options worked, the library will fall back to
 
 This library is considered "experimental" quality. Your feedback would be very welcome! Pull requests are great, but issues are good too.
 
+### Test Application / Example Usage
+
+Check out https://github.com/jcasimir/locale_setter_test for a simple Rails application used to black-box test the library in real usage.
+
 ## License
 
 Please see the included LICENSE.txt
