@@ -5,6 +5,10 @@ describe "LocaleSetter::Matcher" do
     LocaleSetter::Matcher.match(['EN-US'],['en-us']).should == :'en-us'
   end
 
+  it "can properly match when the available locales are not all lower case" do
+    LocaleSetter::Matcher.match(['es-CL'],['es-CL']).should == :'es-CL'
+  end
+
   it "can match using a single string" do
     LocaleSetter::Matcher.match('en', ['en']).should == :en
   end

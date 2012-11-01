@@ -1,8 +1,11 @@
 module LocaleSetter
   module Matcher
     def self.match(requested, against)
-      matched = (sanitize(requested) & against).first
-      matched.to_sym if matched
+      table = generate_lookup_table(against)
+      matched = (sanitize(requested) & table.keys).first
+      if matched
+        table[matched].to_sym
+      end
     end
 
     def self.sanitize(input)
@@ -15,6 +18,12 @@ module LocaleSetter
 
     def self.sanitize_one(locale)
       locale.to_s.downcase.strip
+    end
+
+    def self.generate_lookup_table(locales)
+      table = {}
+      locales.each { |l| table[sanitize_one(l)] = l}
+      table
     end
   end
 end
