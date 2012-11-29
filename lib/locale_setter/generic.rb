@@ -16,7 +16,7 @@ module LocaleSetter
     end
 
     def self.from_user(user, available)
-      LocaleSetter::User.for(user, available) if user
+      LocaleSetter::User.for(user, available)
     end
 
     def self.from_http(env, available)
