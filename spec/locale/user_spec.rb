@@ -4,17 +4,17 @@ describe 'LocaleSetter::User' do
   describe '#for' do
     it "ignores a blank stored locale" do
       blank = OpenStruct.new({:locale => ""})
-      LocaleSetter::User.for(blank, [:default]).should_not be
+      LocaleSetter::User.for(blank, ["default"]).should_not be
     end
 
     it "ignores a stored locale that is not available" do
       invalid = OpenStruct.new({:locale => "woof"})
-      LocaleSetter::User.for(invalid, [:default]).should_not be
+      LocaleSetter::User.for(invalid, ["default"]).should_not be
     end
 
     it "only tries current_user if it offers a locale" do
       class NoLocaleUser; end
-      LocaleSetter::User.for(NoLocaleUser.new, [:default]).should_not be
+      LocaleSetter::User.for(NoLocaleUser.new, ["default"]).should_not be
     end
 
     it "uses a configurable field name" do
