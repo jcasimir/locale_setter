@@ -1,5 +1,5 @@
 module LocaleSetter
-  class User
+  module User
     @@user_locale_method = :locale
 
     def self.for(user, available)

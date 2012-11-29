@@ -113,8 +113,6 @@ Note that care has been taken to prevent a symbol-table-overflow denial of servi
 
 If your system has authentication, then you likely use have a `current_user` helper method available. `LocaleSetter` will call `locale` on current user, expecting to get back a string response.
 
-It's up to you to compute / store this data.
-
 #### Storing a User Preference
 
 The easiest solution is to add a column to your users table:
@@ -133,6 +131,18 @@ Then, allow them to edit this preference wherever they edit other profile items 
 ```
 
 Remember that you may need to modify the `user.rb` if you're filtering mass-assignment parameters.
+
+#### Using a Different Method / Column
+
+`LocaleSetter::User` can be configured to call a method other than `.locale` on the user.
+
+Anytime after the library is loaded, like in a Rails initializer, use the `locale_method=` method:
+
+```ruby
+LocaleSetter::User.locale_method = :my_locale
+```
+
+Subsequent calls to `LocaleSetter::User.for` will use the specified method.
 
 ### HTTP Headers
 
