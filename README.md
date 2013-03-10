@@ -6,6 +6,9 @@ bit of configuration.
 
 ## Installation
 
+Currently, LocaleSetter only supports Rails 3.2 and up. If you want 3.0 or
+3\.1 support, please file an Issue and we can work it out.
+
 ### Gem Installation
 
 Add this line to your application's Gemfile:
