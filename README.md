@@ -1,6 +1,8 @@
 # LocaleSetter
 
-`LocaleSetter` sets the locale for the current request in a Rails application.
+`LocaleSetter` sets the locale for the current request in a web application.
+Rails has automatic support, other applications can use LocaleSetter with a
+bit of configuration.
 
 ## Installation
 
@@ -20,17 +22,7 @@ $ bundle
 
 ### Rails Application Configuration
 
-Include the module in your `app/controllers/application_controller.rb`:
-
-```ruby
-class ApplicationController < ActionController::Base
-  protect_from_forgery
-
-  include LocaleSetter::Rails
-end
-```
-
-*Note:* If you have before filters or a module that handles user authentication, have that _above_ this new `include` so it happens first.
+There is none! Thanks, Railties!
 
 ### Non-Rails Applications
 

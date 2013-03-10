@@ -1,5 +1,5 @@
 module LocaleSetter
-  module Rails
+  module Controller
     def self.included(controller)
       controller.before_filter :set_locale
     end

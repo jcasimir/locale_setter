@@ -1,6 +1,7 @@
 require "locale_setter/version"
 require "locale_setter/matcher"
-require "locale_setter/rails"
+require "locale_setter/controller"
+require "locale_setter/railtie" if defined?(Rails)
 require "locale_setter/http"
 require "locale_setter/user"
 require "locale_setter/param"

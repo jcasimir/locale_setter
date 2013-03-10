@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe LocaleSetter::Rails do
+describe LocaleSetter::Controller do
   it "exists" do
-    expect{ LocaleSetter::Rails }.to_not raise_error
+    expect{ LocaleSetter::Controller }.to_not raise_error
   end
 
   class BareController
@@ -12,16 +12,16 @@ describe LocaleSetter::Rails do
   describe ".included" do
     it "sets a before filter" do
       BareController.should_receive(:before_filter).with(:set_locale)
-      BareController.send(:include, LocaleSetter::Rails)
+      BareController.send(:include, LocaleSetter::Controller)
     end
 
     it "skips setting the before_filter if not supported" do
-      expect{ BareController.send(:include, LocaleSetter::Rails) }.to_not raise_error
+      expect{ BareController.send(:include, LocaleSetter::Controller) }.to_not raise_error
     end
   end
 
   class Controller < BareController
-    include LocaleSetter::Rails
+    include LocaleSetter::Controller
   end
 
   let(:controller){ Controller.new }
