@@ -1,0 +1,1368 @@
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreatePosts (20121019115657)
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("posts")
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreatePosts (20121019115657)
+  [1m[35m (0.6ms)[0m  select sqlite_version(*)
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("posts")
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (2.4ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121019115657')[0m
+  [1m[35m (15.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36mSQL (1.1ms)[0m  [1mDELETE FROM "posts"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (7.1ms)[0m  [1mINSERT INTO "posts" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Fri, 30 Nov 2012 01:18:49 UTC +00:00], ["updated_at", Fri, 30 Nov 2012 01:18:49 UTC +00:00]]
+  [1m[35m (1.0ms)[0m  commit transaction
+
+
+Started GET "/posts/1" for 127.0.0.1 at 2012-11-29 17:19:00 -0800
+Connecting to database specified by database.yml
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered posts/_post.html.erb (4.2ms)
+  Rendered posts/show.html.erb within layouts/application (14.6ms)
+Completed 200 OK in 96ms (Views: 56.7ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/posts/1/mail" for 127.0.0.1 at 2012-11-29 17:19:01 -0800
+Processing by PostsController#mail as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered posts/_post.html.erb (2.2ms)
+  Rendered post_mailer/decorated_email.html.erb within layouts/application (3.7ms)
+
+Sent mail to to@example.com (29ms)
+Date: Thu, 29 Nov 2012 17:19:02 -0800
+From: from@example.com
+To: to@example.com
+Message-ID: <50b809864fe8d_10e8a3fe5da4cba4456322@thoth.local.mail>
+Subject: A decorated post
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dummy</title>
+</head>
+<body>
+
+<dl>
+  <dt>Environment:</dt>
+  <dd id="environment">development</dd>
+
+  <dt>Posted:</dt>
+  <dd id="posted_date">Today</dd>
+
+  <dt>Path with model:</dt>
+  <dd id="path_with_model">/en/posts/1</dd>
+
+  <dt>Path with id:</dt>
+  <dd id="path_with_id">/en/posts/1</dd>
+
+  <dt>URL with model:</dt>
+  <dd id="url_with_model">http://www.example.com/en/posts/1</dd>
+
+  <dt>URL with id:</dt>
+  <dd id="url_with_id">http://www.example.com/en/posts/1</dd>
+</dl>
+
+
+
+</body>
+</html>
+
+  Rendered text template (0.0ms)
+Completed 200 OK in 845ms (Views: 3.2ms | ActiveRecord: 0.1ms)
+Connecting to database specified by database.yml
+  [1m[36m (2.3ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121019115657')[0m
+  [1m[35m (1.9ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36mSQL (1.2ms)[0m  [1mDELETE FROM "posts"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (7.3ms)[0m  [1mINSERT INTO "posts" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Fri, 30 Nov 2012 01:21:48 UTC +00:00], ["updated_at", Fri, 30 Nov 2012 01:21:48 UTC +00:00]]
+  [1m[35m (1.0ms)[0m  commit transaction
+
+
+Started GET "/posts/1" for 127.0.0.1 at 2012-11-29 17:21:59 -0800
+Connecting to database specified by database.yml
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.7ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered posts/_post.html.erb (3.7ms)
+  Rendered posts/show.html.erb within layouts/application (14.2ms)
+Completed 200 OK in 99ms (Views: 58.8ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/posts/1/mail" for 127.0.0.1 at 2012-11-29 17:22:00 -0800
+Processing by PostsController#mail as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered posts/_post.html.erb (2.4ms)
+  Rendered post_mailer/decorated_email.html.erb within layouts/application (3.7ms)
+
+Sent mail to to@example.com (26ms)
+Date: Thu, 29 Nov 2012 17:22:01 -0800
+From: from@example.com
+To: to@example.com
+Message-ID: <50b80a38f21a5_1105b3fe8dece6b00905ae@thoth.local.mail>
+Subject: A decorated post
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dummy</title>
+</head>
+<body>
+
+<dl>
+  <dt>Environment:</dt>
+  <dd id="environment">development</dd>
+
+  <dt>Posted:</dt>
+  <dd id="posted_date">Today</dd>
+
+  <dt>Path with model:</dt>
+  <dd id="path_with_model">/en/posts/1</dd>
+
+  <dt>Path with id:</dt>
+  <dd id="path_with_id">/en/posts/1</dd>
+
+  <dt>URL with model:</dt>
+  <dd id="url_with_model">http://www.example.com/en/posts/1</dd>
+
+  <dt>URL with id:</dt>
+  <dd id="url_with_id">http://www.example.com/en/posts/1</dd>
+</dl>
+
+
+
+</body>
+</html>
+
+  Rendered text template (0.0ms)
+Completed 200 OK in 723ms (Views: 3.2ms | ActiveRecord: 0.1ms)
+Connecting to database specified by database.yml
+  [1m[36m (2.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121019115657')[0m
+  [1m[35m (5.3ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36mSQL (0.9ms)[0m  [1mDELETE FROM "posts"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (8.0ms)[0m  [1mINSERT INTO "posts" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Fri, 30 Nov 2012 02:27:25 UTC +00:00], ["updated_at", Fri, 30 Nov 2012 02:27:25 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+
+
+Started GET "/posts/1" for 127.0.0.1 at 2012-11-29 18:27:36 -0800
+Connecting to database specified by database.yml
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered posts/_post.html.erb (4.5ms)
+  Rendered posts/show.html.erb within layouts/application (14.5ms)
+Completed 200 OK in 92ms (Views: 55.4ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/posts/1/mail" for 127.0.0.1 at 2012-11-29 18:27:36 -0800
+Processing by PostsController#mail as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered posts/_post.html.erb (2.1ms)
+  Rendered post_mailer/decorated_email.html.erb within layouts/application (3.3ms)
+
+Sent mail to to@example.com (26ms)
+Date: Thu, 29 Nov 2012 18:27:37 -0800
+From: from@example.com
+To: to@example.com
+Message-ID: <50b8199970abb_1162b3feb6b4e748817613@thoth.local.mail>
+Subject: A decorated post
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dummy</title>
+</head>
+<body>
+
+<dl>
+  <dt>Environment:</dt>
+  <dd id="environment">development</dd>
+
+  <dt>Posted:</dt>
+  <dd id="posted_date">Today</dd>
+
+  <dt>Path with model:</dt>
+  <dd id="path_with_model">/en/posts/1</dd>
+
+  <dt>Path with id:</dt>
+  <dd id="path_with_id">/en/posts/1</dd>
+
+  <dt>URL with model:</dt>
+  <dd id="url_with_model">http://www.example.com/en/posts/1</dd>
+
+  <dt>URL with id:</dt>
+  <dd id="url_with_id">http://www.example.com/en/posts/1</dd>
+</dl>
+
+
+
+</body>
+</html>
+
+  Rendered text template (0.0ms)
+Completed 200 OK in 680ms (Views: 3.4ms | ActiveRecord: 0.1ms)
+Connecting to database specified by database.yml
+  [1m[36m (2.7ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36m (1.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121019115657')[0m
+  [1m[35m (2.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36mSQL (1.0ms)[0m  [1mDELETE FROM "posts"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (10.1ms)[0m  [1mINSERT INTO "posts" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Mon, 03 Dec 2012 22:55:59 UTC +00:00], ["updated_at", Mon, 03 Dec 2012 22:55:59 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+
+
+Started GET "/posts/1" for 127.0.0.1 at 2012-12-03 23:56:10 +0100
+Connecting to database specified by database.yml
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered posts/_post.html.erb (3.7ms)
+  Rendered posts/show.html.erb within layouts/application (14.3ms)
+Completed 200 OK in 92ms (Views: 33.8ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/posts/1/mail" for 127.0.0.1 at 2012-12-03 23:56:11 +0100
+Processing by PostsController#mail as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered posts/_post.html.erb (1.9ms)
+  Rendered post_mailer/decorated_email.html.erb within layouts/application (3.2ms)
+
+Sent mail to to@example.com (25ms)
+Date: Mon, 03 Dec 2012 23:56:12 +0100
+From: from@example.com
+To: to@example.com
+Message-ID: <50bd2e0c16506_7f73feb4ccedbd83838a@thoth.local.mail>
+Subject: A decorated post
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dummy</title>
+</head>
+<body>
+
+<dl>
+  <dt>Environment:</dt>
+  <dd id="environment">development</dd>
+
+  <dt>Posted:</dt>
+  <dd id="posted_date">Today</dd>
+
+  <dt>Path with model:</dt>
+  <dd id="path_with_model">/en/posts/1</dd>
+
+  <dt>Path with id:</dt>
+  <dd id="path_with_id">/en/posts/1</dd>
+
+  <dt>URL with model:</dt>
+  <dd id="url_with_model">http://www.example.com/en/posts/1</dd>
+
+  <dt>URL with id:</dt>
+  <dd id="url_with_id">http://www.example.com/en/posts/1</dd>
+</dl>
+
+
+
+</body>
+</html>
+
+  Rendered text template (0.0ms)
+Completed 200 OK in 653ms (Views: 3.2ms | ActiveRecord: 0.1ms)
+Connecting to database specified by database.yml
+  [1m[36m (3.3ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.6ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121019115657')[0m
+  [1m[35m (4.6ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36mSQL (1.1ms)[0m  [1mDELETE FROM "posts"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (7.5ms)[0m  [1mINSERT INTO "posts" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Sat, 08 Dec 2012 19:41:04 UTC +00:00], ["updated_at", Sat, 08 Dec 2012 19:41:04 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+
+
+Started GET "/posts/1" for 127.0.0.1 at 2012-12-08 11:41:15 -0800
+Connecting to database specified by database.yml
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered posts/_post.html.erb (4.1ms)
+  Rendered posts/show.html.erb within layouts/application (16.4ms)
+Completed 200 OK in 123ms (Views: 42.1ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/posts/1/mail" for 127.0.0.1 at 2012-12-08 11:41:16 -0800
+Processing by PostsController#mail as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.2ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered posts/_post.html.erb (2.4ms)
+  Rendered post_mailer/decorated_email.html.erb within layouts/application (4.0ms)
+
+Sent mail to to@example.com (31ms)
+Date: Sat, 08 Dec 2012 11:41:17 -0800
+From: from@example.com
+To: to@example.com
+Message-ID: <50c397dd37148_20373fe35b32d72c558b5@thoth.local.mail>
+Subject: A decorated post
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dummy</title>
+</head>
+<body>
+
+<dl>
+  <dt>Environment:</dt>
+  <dd id="environment">development</dd>
+
+  <dt>Posted:</dt>
+  <dd id="posted_date">Today</dd>
+
+  <dt>Path with model:</dt>
+  <dd id="path_with_model">/en/posts/1</dd>
+
+  <dt>Path with id:</dt>
+  <dd id="path_with_id">/en/posts/1</dd>
+
+  <dt>URL with model:</dt>
+  <dd id="url_with_model">http://www.example.com/en/posts/1</dd>
+
+  <dt>URL with id:</dt>
+  <dd id="url_with_id">http://www.example.com/en/posts/1</dd>
+</dl>
+
+
+
+</body>
+</html>
+
+  Rendered text template (0.0ms)
+Completed 200 OK in 782ms (Views: 2.9ms | ActiveRecord: 0.2ms)
+Connecting to database specified by database.yml
+  [1m[36m (2.7ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121019115657')[0m
+  [1m[35m (4.7ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36mSQL (1.1ms)[0m  [1mDELETE FROM "posts"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (7.1ms)[0m  [1mINSERT INTO "posts" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Sat, 08 Dec 2012 23:21:55 UTC +00:00], ["updated_at", Sat, 08 Dec 2012 23:21:55 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+
+
+Started GET "/posts/1" for 127.0.0.1 at 2012-12-08 15:22:07 -0800
+Connecting to database specified by database.yml
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered posts/_post.html.erb (4.4ms)
+  Rendered posts/show.html.erb within layouts/application (14.2ms)
+Completed 200 OK in 101ms (Views: 32.3ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/posts/1/mail" for 127.0.0.1 at 2012-12-08 15:22:08 -0800
+Processing by PostsController#mail as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered posts/_post.html.erb (2.1ms)
+  Rendered post_mailer/decorated_email.html.erb within layouts/application (3.5ms)
+
+Sent mail to to@example.com (25ms)
+Date: Sat, 08 Dec 2012 15:22:09 -0800
+From: from@example.com
+To: to@example.com
+Message-ID: <50c3cba172_23273fc5445370e8198cb@thoth.local.mail>
+Subject: A decorated post
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dummy</title>
+</head>
+<body>
+
+<dl>
+  <dt>Environment:</dt>
+  <dd id="environment">development</dd>
+
+  <dt>Posted:</dt>
+  <dd id="posted_date">Today</dd>
+
+  <dt>Path with model:</dt>
+  <dd id="path_with_model">/en/posts/1</dd>
+
+  <dt>Path with id:</dt>
+  <dd id="path_with_id">/en/posts/1</dd>
+
+  <dt>URL with model:</dt>
+  <dd id="url_with_model">http://www.example.com/en/posts/1</dd>
+
+  <dt>URL with id:</dt>
+  <dd id="url_with_id">http://www.example.com/en/posts/1</dd>
+</dl>
+
+
+
+</body>
+</html>
+
+  Rendered text template (0.0ms)
+Completed 200 OK in 674ms (Views: 3.4ms | ActiveRecord: 0.1ms)
+Connecting to database specified by database.yml
+  [1m[36m (1.9ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121019115657')[0m
+  [1m[35m (1.4ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36mSQL (0.9ms)[0m  [1mDELETE FROM "posts"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (4.7ms)[0m  [1mINSERT INTO "posts" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Thu, 13 Dec 2012 16:15:28 UTC +00:00], ["updated_at", Thu, 13 Dec 2012 16:15:28 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+
+
+Started GET "/posts/1" for 127.0.0.1 at 2012-12-13 11:15:34 -0500
+Connecting to database specified by database.yml
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered posts/_post.html.erb (4.6ms)
+  Rendered posts/show.html.erb within layouts/application (29.7ms)
+Completed 200 OK in 69ms (Views: 41.3ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/posts/1/mail" for 127.0.0.1 at 2012-12-13 11:15:35 -0500
+Processing by PostsController#mail as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.2ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered posts/_post.html.erb (1.9ms)
+  Rendered post_mailer/decorated_email.html.erb within layouts/application (3.2ms)
+
+Sent mail to to@example.com (40ms)
+Date: Thu, 13 Dec 2012 11:15:35 -0500
+From: from@example.com
+To: to@example.com
+Message-ID: <50c9ff2786a12_c54e3ffac46eea7054528@thoth.mail>
+Subject: A decorated post
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dummy</title>
+</head>
+<body>
+
+<dl>
+  <dt>Environment:</dt>
+  <dd id="environment">development</dd>
+
+  <dt>Posted:</dt>
+  <dd id="posted_date">Today</dd>
+
+  <dt>Path with model:</dt>
+  <dd id="path_with_model">/en/posts/1</dd>
+
+  <dt>Path with id:</dt>
+  <dd id="path_with_id">/en/posts/1</dd>
+
+  <dt>URL with model:</dt>
+  <dd id="url_with_model">http://www.example.com/en/posts/1</dd>
+
+  <dt>URL with id:</dt>
+  <dd id="url_with_id">http://www.example.com/en/posts/1</dd>
+</dl>
+
+
+
+</body>
+</html>
+
+  Rendered text template (0.0ms)
+Completed 200 OK in 501ms (Views: 2.2ms | ActiveRecord: 0.2ms)
+Connecting to database specified by database.yml
+  [1m[36m (2.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121019115657')[0m
+  [1m[35m (1.5ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36mSQL (1.2ms)[0m  [1mDELETE FROM "posts"[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (5.2ms)[0m  [1mINSERT INTO "posts" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Mon, 17 Dec 2012 10:43:31 UTC +00:00], ["updated_at", Mon, 17 Dec 2012 10:43:31 UTC +00:00]]
+  [1m[35m (1.0ms)[0m  commit transaction
+
+
+Started GET "/posts/1" for 127.0.0.1 at 2012-12-17 03:43:38 -0700
+Connecting to database specified by database.yml
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered posts/_post.html.erb (2.8ms)
+  Rendered posts/show.html.erb within layouts/application (8.4ms)
+Completed 200 OK in 58ms (Views: 20.5ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/posts/1/mail" for 127.0.0.1 at 2012-12-17 03:43:38 -0700
+Processing by PostsController#mail as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.2ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered posts/_post.html.erb (1.3ms)
+  Rendered post_mailer/decorated_email.html.erb within layouts/application (2.1ms)
+
+Sent mail to to@example.com (38ms)
+Date: Mon, 17 Dec 2012 03:43:38 -0700
+From: from@example.com
+To: to@example.com
+Message-ID: <50cef75abf41b_4e763fca64f106807584@thoth.lan.mail>
+Subject: A decorated post
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dummy</title>
+</head>
+<body>
+
+<dl>
+  <dt>Environment:</dt>
+  <dd id="environment">development</dd>
+
+  <dt>Posted:</dt>
+  <dd id="posted_date">Today</dd>
+
+  <dt>Path with model:</dt>
+  <dd id="path_with_model">/en/posts/1</dd>
+
+  <dt>Path with id:</dt>
+  <dd id="path_with_id">/en/posts/1</dd>
+
+  <dt>URL with model:</dt>
+  <dd id="url_with_model">http://www.example.com/en/posts/1</dd>
+
+  <dt>URL with id:</dt>
+  <dd id="url_with_id">http://www.example.com/en/posts/1</dd>
+</dl>
+
+
+
+</body>
+</html>
+
+  Rendered text template (0.0ms)
+Completed 200 OK in 483ms (Views: 2.2ms | ActiveRecord: 0.2ms)
+Connecting to database specified by database.yml
+  [1m[36m (2.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36m (1.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121019115657')[0m
+  [1m[35m (1.5ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36mSQL (1.1ms)[0m  [1mDELETE FROM "posts"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (7.5ms)[0m  [1mINSERT INTO "posts" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Tue, 18 Dec 2012 08:38:28 UTC +00:00], ["updated_at", Tue, 18 Dec 2012 08:38:28 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+
+
+Started GET "/posts/1" for 127.0.0.1 at 2012-12-18 01:38:36 -0700
+Connecting to database specified by database.yml
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered posts/_post.html.erb (3.2ms)
+  Rendered posts/show.html.erb within layouts/application (9.5ms)
+Completed 200 OK in 65ms (Views: 19.8ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/posts/1/mail" for 127.0.0.1 at 2012-12-18 01:38:37 -0700
+Processing by PostsController#mail as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered posts/_post.html.erb (1.8ms)
+  Rendered post_mailer/decorated_email.html.erb within layouts/application (3.0ms)
+
+Sent mail to to@example.com (40ms)
+Date: Tue, 18 Dec 2012 01:38:37 -0700
+From: from@example.com
+To: to@example.com
+Message-ID: <50d02b8dc77ef_6c893fc06e2e203453636@thoth.lan.mail>
+Subject: A decorated post
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dummy</title>
+</head>
+<body>
+
+<dl>
+  <dt>Environment:</dt>
+  <dd id="environment">development</dd>
+
+  <dt>Posted:</dt>
+  <dd id="posted_date">Today</dd>
+
+  <dt>Path with model:</dt>
+  <dd id="path_with_model">/en/posts/1</dd>
+
+  <dt>Path with id:</dt>
+  <dd id="path_with_id">/en/posts/1</dd>
+
+  <dt>URL with model:</dt>
+  <dd id="url_with_model">http://www.example.com/en/posts/1</dd>
+
+  <dt>URL with id:</dt>
+  <dd id="url_with_id">http://www.example.com/en/posts/1</dd>
+</dl>
+
+
+
+</body>
+</html>
+
+  Rendered text template (0.0ms)
+Completed 200 OK in 566ms (Views: 2.5ms | ActiveRecord: 0.1ms)
+Connecting to database specified by database.yml
+  [1m[36m (16.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.8ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121019115657')
+  [1m[36m (1.5ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35mSQL (1.2ms)[0m  DELETE FROM "posts"
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (6.4ms)[0m  INSERT INTO "posts" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Thu, 27 Dec 2012 03:59:07 UTC +00:00], ["updated_at", Thu, 27 Dec 2012 03:59:07 UTC +00:00]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/posts/1" for 127.0.0.1 at 2012-12-26 22:59:14 -0500
+Connecting to database specified by database.yml
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered posts/_post.html.erb (2.9ms)
+  Rendered posts/show.html.erb within layouts/application (9.7ms)
+Completed 200 OK in 74ms (Views: 21.5ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/posts/1/mail" for 127.0.0.1 at 2012-12-26 22:59:15 -0500
+Processing by PostsController#mail as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered posts/_post.html.erb (1.4ms)
+  Rendered post_mailer/decorated_email.html.erb within layouts/application (2.3ms)
+
+Sent mail to to@example.com (19ms)
+Date: Wed, 26 Dec 2012 22:59:15 -0500
+From: from@example.com
+To: to@example.com
+Message-ID: <50dbc7939ab38_15a593fccc9af18306209@thoth.mail>
+Subject: A decorated post
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dummy</title>
+</head>
+<body>
+
+<dl>
+  <dt>Environment:</dt>
+  <dd id="environment">development</dd>
+
+  <dt>Posted:</dt>
+  <dd id="posted_date">Today</dd>
+
+  <dt>Path with model:</dt>
+  <dd id="path_with_model">/en/posts/1</dd>
+
+  <dt>Path with id:</dt>
+  <dd id="path_with_id">/en/posts/1</dd>
+
+  <dt>URL with model:</dt>
+  <dd id="url_with_model">http://www.example.com/en/posts/1</dd>
+
+  <dt>URL with id:</dt>
+  <dd id="url_with_id">http://www.example.com/en/posts/1</dd>
+</dl>
+
+
+
+</body>
+</html>
+
+  Rendered text template (0.0ms)
+Completed 200 OK in 527ms (Views: 25.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/posts/1" for 127.0.0.1 at 2013-03-10 10:46:57 -0700
+Connecting to database specified by database.yml
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Completed 500 Internal Server Error in 35ms
+
+NoMethodError (undefined method `decorate' for #<Post:0x007f977d6860e8>):
+  app/controllers/posts_controller.rb:3:in `show'
+
+
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.2ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.6ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.3ms)
+
+
+Started GET "/posts/1" for 127.0.0.1 at 2013-03-10 10:48:11 -0700
+Connecting to database specified by database.yml
+Processing by PostsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Completed 500 Internal Server Error in 30ms
+
+NoMethodError (undefined method `decorate' for #<Post:0x007fe7533b4448>):
+  app/controllers/posts_controller.rb:3:in `show'
+
+
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (33.5ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 11:12:10 -0700
+Connecting to database specified by database.yml
+Processing by ArticlesController#index as */*
+Completed 500 Internal Server Error in 11ms
+
+NameError (uninitialized constant ArticlesController::Article):
+  app/controllers/articles_controller.rb:5:in `index'
+
+
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.4ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.7ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.5ms)
+
+
+Started GET "/articles?local=arr" for 127.0.0.1 at 2013-03-10 11:12:10 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"local"=>"arr"}
+Completed 500 Internal Server Error in 1ms
+
+NameError (uninitialized constant ArticlesController::Article):
+  app/controllers/articles_controller.rb:5:in `index'
+
+
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (35.6ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 11:12:35 -0700
+Connecting to database specified by database.yml
+Processing by ArticlesController#index as */*
+Completed 500 Internal Server Error in 12ms
+
+NameError (uninitialized constant ArticlesController::Article):
+  app/controllers/articles_controller.rb:5:in `index'
+
+
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.6ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.8ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.6ms)
+
+
+Started GET "/articles?local=arr" for 127.0.0.1 at 2013-03-10 11:12:35 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"local"=>"arr"}
+Completed 500 Internal Server Error in 2ms
+
+NameError (uninitialized constant ArticlesController::Article):
+  app/controllers/articles_controller.rb:5:in `index'
+
+
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.6ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.9ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.5ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 11:13:10 -0700
+Connecting to database specified by database.yml
+Processing by ArticlesController#index as */*
+Completed 500 Internal Server Error in 8ms
+
+NameError (uninitialized constant ArticlesController::Article):
+  app/controllers/articles_controller.rb:5:in `index'
+
+
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.1ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.2ms)
+
+
+Started GET "/articles?local=arr" for 127.0.0.1 at 2013-03-10 11:13:10 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"local"=>"arr"}
+Completed 500 Internal Server Error in 1ms
+
+NameError (uninitialized constant ArticlesController::Article):
+  app/controllers/articles_controller.rb:5:in `index'
+
+
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.9ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 11:13:49 -0700
+Connecting to database specified by database.yml
+Processing by ArticlesController#index as */*
+Completed 500 Internal Server Error in 24ms
+
+ActiveRecord::StatementInvalid (Could not find table 'articles'):
+  app/controllers/articles_controller.rb:5:in `index'
+
+
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (26.8ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (35.2ms)
+
+
+Started GET "/articles?local=arr" for 127.0.0.1 at 2013-03-10 11:13:50 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"local"=>"arr"}
+Completed 500 Internal Server Error in 1ms
+
+ActiveRecord::StatementInvalid (Could not find table 'articles'):
+  app/controllers/articles_controller.rb:5:in `index'
+
+
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.1ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 11:14:59 -0700
+Connecting to database specified by database.yml
+Processing by ArticlesController#index as */*
+Completed 500 Internal Server Error in 80ms
+
+ActiveRecord::StatementInvalid (Could not find table 'articles'):
+  app/controllers/articles_controller.rb:5:in `index'
+
+
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.3ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (12.6ms)
+
+
+Started GET "/articles?local=arr" for 127.0.0.1 at 2013-03-10 11:15:00 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"local"=>"arr"}
+Completed 500 Internal Server Error in 1ms
+
+ActiveRecord::StatementInvalid (Could not find table 'articles'):
+  app/controllers/articles_controller.rb:5:in `index'
+
+
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /Users/steve/.gem/ruby/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.9ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 11:15:31 -0700
+Connecting to database specified by database.yml
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 42ms (Views: 10.5ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/articles?local=arr" for 127.0.0.1 at 2013-03-10 11:15:31 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"local"=>"arr"}
+  [1m[35mArticle Load (0.2ms)[0m  SELECT "articles".* FROM "articles" 
+  Rendered articles/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 11:16:41 -0700
+Connecting to database specified by database.yml
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 45ms (Views: 13.8ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/articles?local=arr" for 127.0.0.1 at 2013-03-10 11:16:41 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"local"=>"arr"}
+  [1m[35mArticle Load (0.2ms)[0m  SELECT "articles".* FROM "articles" 
+  Rendered articles/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 11:17:33 -0700
+Connecting to database specified by database.yml
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 88ms (Views: 52.9ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/articles?local=arr" for 127.0.0.1 at 2013-03-10 11:17:34 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"local"=>"arr"}
+  [1m[35mArticle Load (5.5ms)[0m  SELECT "articles".* FROM "articles" 
+  Rendered articles/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 14ms (Views: 7.0ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 11:18:27 -0700
+Connecting to database specified by database.yml
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 77ms (Views: 41.8ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/articles?local=arr" for 127.0.0.1 at 2013-03-10 11:18:28 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"local"=>"arr"}
+  [1m[35mArticle Load (0.2ms)[0m  SELECT "articles".* FROM "articles" 
+  Rendered articles/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 11:18:53 -0700
+Connecting to database specified by database.yml
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 80ms (Views: 41.6ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/articles?user=true" for 127.0.0.1 at 2013-03-10 11:18:53 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"user"=>"true"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mArticle Load (0.2ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 19ms (Views: 6.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/articles?local=arr" for 127.0.0.1 at 2013-03-10 11:18:53 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"local"=>"arr"}
+  [1m[35mArticle Load (0.2ms)[0m  SELECT "articles".* FROM "articles" 
+  Rendered articles/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 6ms (Views: 4.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 11:20:27 -0700
+Connecting to database specified by database.yml
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.2ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 74ms (Views: 43.8ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/articles?locale=arr" for 127.0.0.1 at 2013-03-10 11:20:27 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"locale"=>"arr"}
+  [1m[35mArticle Load (0.2ms)[0m  SELECT "articles".* FROM "articles" 
+  Rendered articles/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/articles?user=true" for 127.0.0.1 at 2013-03-10 11:20:27 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"user"=>"true"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mArticle Load (0.2ms)[0m  SELECT "articles".* FROM "articles" 
+  Rendered articles/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 23ms (Views: 6.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 11:22:05 -0700
+Connecting to database specified by database.yml
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.2ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 55ms (Views: 18.6ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/articles?locale=arr" for 127.0.0.1 at 2013-03-10 11:22:05 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"locale"=>"arr"}
+  [1m[35mArticle Load (0.2ms)[0m  SELECT "articles".* FROM "articles" 
+  Rendered articles/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 6ms (Views: 4.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/articles?user=true" for 127.0.0.1 at 2013-03-10 11:22:05 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"user"=>"true"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mArticle Load (0.2ms)[0m  SELECT "articles".* FROM "articles" 
+  Rendered articles/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 25ms (Views: 7.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 11:23:09 -0700
+Connecting to database specified by database.yml
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.2ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 58ms (Views: 18.5ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/articles?user=true" for 127.0.0.1 at 2013-03-10 11:23:09 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"user"=>"true"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mArticle Load (0.2ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 56ms (Views: 7.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 11:23:09 -0700
+Processing by ArticlesController#index as */*
+  [1m[35mArticle Load (0.2ms)[0m  SELECT "articles".* FROM "articles" 
+  Rendered articles/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 47ms (Views: 45.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/articles?locale=arr" for 127.0.0.1 at 2013-03-10 11:23:09 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"locale"=>"arr"}
+  [1m[36mArticle Load (0.2ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 10ms (Views: 8.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 11:34:15 -0700
+Connecting to database specified by database.yml
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.2ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 104ms (Views: 60.8ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 11:34:15 -0700
+Processing by ArticlesController#index as */*
+  [1m[35mArticle Load (0.3ms)[0m  SELECT "articles".* FROM "articles" 
+  Rendered articles/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 7ms (Views: 5.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/articles?user=true" for 127.0.0.1 at 2013-03-10 11:34:15 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"user"=>"true"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mArticle Load (0.2ms)[0m  SELECT "articles".* FROM "articles" 
+  Rendered articles/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 26ms (Views: 6.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/articles?locale=arr" for 127.0.0.1 at 2013-03-10 11:34:15 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"locale"=>"arr"}
+  [1m[36mArticle Load (0.2ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 9ms (Views: 7.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 11:35:09 -0700
+Connecting to database specified by database.yml
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.2ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 85ms (Views: 45.0ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 11:35:09 -0700
+Processing by ArticlesController#index as */*
+  [1m[35mArticle Load (0.2ms)[0m  SELECT "articles".* FROM "articles" 
+  Rendered articles/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 6ms (Views: 4.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/articles?user=true" for 127.0.0.1 at 2013-03-10 11:35:09 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"user"=>"true"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mArticle Load (0.2ms)[0m  SELECT "articles".* FROM "articles" 
+  Rendered articles/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 22ms (Views: 4.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/articles?locale=arr" for 127.0.0.1 at 2013-03-10 11:35:10 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"locale"=>"arr"}
+  [1m[36mArticle Load (0.2ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 7ms (Views: 5.4ms | ActiveRecord: 0.2ms)
+Connecting to database specified by database.yml
+  [1m[36m (1.8ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121019115657')
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (1.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.9ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121019115657')
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (2.9ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (2.1ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121019115657')
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (0.9ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "locale" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121019224754')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121019115657')
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (6.2ms)[0m  [1mINSERT INTO "users" ("created_at", "locale", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Sun, 10 Mar 2013 20:28:57 UTC +00:00], ["locale", "user"], ["name", "Sample User"], ["updated_at", Sun, 10 Mar 2013 20:28:57 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Connecting to database specified by database.yml
+  [1m[36m (1.3ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (2.4ms)[0m  CREATE TABLE "articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "locale" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121019224754')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121019115657')
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (6.1ms)[0m  [1mINSERT INTO "users" ("created_at", "locale", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Sun, 10 Mar 2013 20:29:12 UTC +00:00], ["locale", "user"], ["name", "Sample User"], ["updated_at", Sun, 10 Mar 2013 20:29:12 UTC +00:00]]
+  [1m[35m (1.0ms)[0m  commit transaction
+Connecting to database specified by database.yml
+  [1m[36m (1.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (2.2ms)[0m  CREATE TABLE "articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "locale" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121019224754')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121019115657')
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (4.8ms)[0m  [1mINSERT INTO "users" ("created_at", "locale", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Sun, 10 Mar 2013 20:30:35 UTC +00:00], ["locale", "user"], ["name", "Sample User"], ["updated_at", Sun, 10 Mar 2013 20:30:35 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Connecting to database specified by database.yml
+  [1m[36m (1.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "locale" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121019224754')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121019115657')
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (5.1ms)[0m  [1mINSERT INTO "users" ("created_at", "locale", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Sun, 10 Mar 2013 20:31:11 UTC +00:00], ["locale", "user"], ["name", "Sample User"], ["updated_at", Sun, 10 Mar 2013 20:31:11 UTC +00:00]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Connecting to database specified by database.yml
+  [1m[36m (1.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (2.2ms)[0m  CREATE TABLE "articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "locale" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121019224754')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121019115657')
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (4.7ms)[0m  [1mINSERT INTO "users" ("created_at", "locale", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Sun, 10 Mar 2013 20:31:53 UTC +00:00], ["locale", "user"], ["name", "Sample User"], ["updated_at", Sun, 10 Mar 2013 20:31:53 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Connecting to database specified by database.yml
+  [1m[36m (1.8ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (2.1ms)[0m  CREATE TABLE "articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "locale" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121019224754')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121019115657')
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (5.0ms)[0m  [1mINSERT INTO "users" ("created_at", "locale", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Sun, 10 Mar 2013 20:32:31 UTC +00:00], ["locale", "user"], ["name", "Sample User"], ["updated_at", Sun, 10 Mar 2013 20:32:31 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  commit transaction
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 13:32:39 -0700
+Connecting to database specified by database.yml
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 90ms (Views: 11.5ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 13:32:40 -0700
+Processing by ArticlesController#index as */*
+  [1m[35mArticle Load (0.2ms)[0m  SELECT "articles".* FROM "articles" 
+  Rendered articles/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/articles?user=true" for 127.0.0.1 at 2013-03-10 13:32:40 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"user"=>"true"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mArticle Load (0.3ms)[0m  SELECT "articles".* FROM "articles" 
+  Rendered articles/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 21ms (Views: 6.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/articles?locale=arr" for 127.0.0.1 at 2013-03-10 13:32:40 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"locale"=>"arr"}
+  [1m[36mArticle Load (0.2ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.2ms)
+Connecting to database specified by database.yml
+  [1m[36m (1.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "locale" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121019224754')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121019115657')
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (3.1ms)[0m  [1mINSERT INTO "users" ("created_at", "locale", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Sun, 10 Mar 2013 20:33:02 UTC +00:00], ["locale", "user"], ["name", "Sample User"], ["updated_at", Sun, 10 Mar 2013 20:33:02 UTC +00:00]]
+  [1m[35m (0.9ms)[0m  commit transaction
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 13:33:10 -0700
+Connecting to database specified by database.yml
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.3ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 43ms (Views: 13.7ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/articles?locale=arr" for 127.0.0.1 at 2013-03-10 13:33:10 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"locale"=>"arr"}
+  [1m[35mArticle Load (0.2ms)[0m  SELECT "articles".* FROM "articles" 
+  Rendered articles/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 9ms (Views: 6.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2013-03-10 13:33:11 -0700
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.2ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 6ms (Views: 4.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/articles?user=true" for 127.0.0.1 at 2013-03-10 13:33:11 -0700
+Processing by ArticlesController#index as */*
+  Parameters: {"user"=>"true"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mArticle Load (0.2ms)[0m  [1mSELECT "articles".* FROM "articles" [0m
+  Rendered articles/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 56ms (Views: 7.6ms | ActiveRecord: 0.7ms)
