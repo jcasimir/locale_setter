@@ -13,3 +13,13 @@ matrix:
   allow_failures:
     - rvm: 2.0.0
     - env: "RAILS_VERSION=master"
+  exclude:
+    - rvm: 2.0.0
+      env: "RAILS_VERSION=3.0"
+    - rvm: 2.0.0
+      env: "RAILS_VERSION=3.1"
+    - rvm: 1.8.7
+      env: "RAILS_VERSION=master"
+    - rvm: 1.9.2
+      env: "RAILS_VERSION=master"
+
