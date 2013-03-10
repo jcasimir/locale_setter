@@ -18,7 +18,7 @@ module HaveTextMatcher
     def matches?(subject)
       @subject = Capybara.string(subject)
 
-      @subject.has_css?(@css || "*", text: @text)
+      @subject.has_css?(@css || "*", :text => @text)
     end
 
     def failure_message_for_should
