@@ -5,15 +5,15 @@ describe LocaleSetter::Domain do
     before { described_class.localized_domains = { "my_domain.com" => "domain_locale" }}
 
     it "ignores a blank domain" do
-      described_class.for("", ["domain_locale"]).should_not be
+      expect(described_class.for("", ["domain_locale"])).not_to be
     end
 
     it "ignores domains not from the list" do
-      described_class.for("my_domain.com", ["default"]).should_not be
+      expect(described_class.for("my_domain.com", ["default"])).not_to be
     end
 
     it "detects right domain" do
-      described_class.for("my_domain.com", ["domain_locale"]).should == :domain_locale
+      expect(described_class.for("my_domain.com", ["domain_locale"])).to eq(:domain_locale)
     end
   end
 end

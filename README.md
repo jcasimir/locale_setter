@@ -36,7 +36,7 @@ The library can be used outside of Rails by accessing `LocaleSetter::Generic` di
 request = {'HTTP_ACCEPT_LANGUAGE' = 'en,es;0.6'}
 params  = {:locale = 'en'}
 user    = User.first
-i18n    = I18n 
+i18n    = I18n
 
 # Set the .locale of I18n
 LocaleSetter::Generic.set_locale(i18n,
@@ -62,7 +62,7 @@ One of the challenges with internationalization is knowing which locale a user a
 
 As a developer or designer, it's incredibly handy to be able to manipulate the URL to change locales. You might even use this with CI to run your integration tests using each locale you support.
 
-If you're currently using the default locale for the application, generated URLs on your site will be untouched. 
+If you're currently using the default locale for the application, generated URLs on your site will be untouched.
 
 For example, say my default is `:en` for English and I am viewing in English, my URL might look like:
 
@@ -102,7 +102,7 @@ http://example.com/articles/1&locale=es
 
 #### Non-Supported Locales
 
-If the locale specified in the URL is not supported, `LocaleSetter` will revert to the default locale. 
+If the locale specified in the URL is not supported, `LocaleSetter` will revert to the default locale.
 
 Note that care has been taken to prevent a symbol-table-overflow denial of service attack. Unsupported locales are not symbolized, so there is no danger.
 
@@ -151,8 +151,6 @@ LocaleSetter::Domain.localized_domains = {
   "es.domain.com" => :es
 }
 ```
-
-
 
 ### HTTP Headers
 
