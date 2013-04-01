@@ -42,6 +42,15 @@ describe LocaleSetter::Generic do
       end
     end
 
+    context "with localized domains" do
+      it "uses the locale from config" do
+        i18n.available_locales = [:en, :domain_specified]
+        LocaleSetter::Domain.localized_domains = { "localized_domain.com" => :domain_specified }
+        setter.set_locale(i18n, {:domain => "localized_domain.com"} )
+        i18n.locale.should == :domain_specified
+      end
+    end
+
     context "with url parameters" do
       before(:each) do
         i18n.available_locales = [:en, :param_specified]

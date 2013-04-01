@@ -474,3 +474,43 @@ Processing by ArticlesController#index as */*
   Parameters: {"locale"=>"arr"}
   Rendered articles/index.html.erb within layouts/application (1.0ms)
 Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.2ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Started GET "/articles" for 127.0.0.1 at 2013-04-01 18:27:06 +0400
+Processing by ArticlesController#index as */*
+  Rendered articles/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 28ms (Views: 8.1ms | ActiveRecord: 4.6ms)
+Started GET "/articles" for 127.0.0.1 at 2013-04-01 18:27:06 +0400
+Processing by ArticlesController#index as */*
+  Rendered articles/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 3ms (Views: 1.1ms | ActiveRecord: 1.3ms)
+Started GET "/articles?user=true" for 127.0.0.1 at 2013-04-01 18:27:06 +0400
+Processing by ArticlesController#index as */*
+  Parameters: {"user"=>"true"}
+  Rendered articles/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 16ms (Views: 5.9ms | ActiveRecord: 3.8ms)
+Started GET "/articles?locale=arr" for 127.0.0.1 at 2013-04-01 18:27:06 +0400
+Processing by ArticlesController#index as */*
+  Parameters: {"locale"=>"arr"}
+  Rendered articles/index.html.erb within layouts/application (16.1ms)
+Completed 200 OK in 22ms (Views: 20.5ms | ActiveRecord: 1.2ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Started GET "/articles" for 127.0.0.1 at 2013-04-01 18:40:04 +0400
+Processing by ArticlesController#index as */*
+  Rendered articles/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 33ms (Views: 9.5ms | ActiveRecord: 4.6ms)
+Started GET "/articles?locale=arr" for 127.0.0.1 at 2013-04-01 18:40:04 +0400
+Processing by ArticlesController#index as */*
+  Parameters: {"locale"=>"arr"}
+  Rendered articles/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 8ms (Views: 5.5ms | ActiveRecord: 1.3ms)
+Started GET "/articles" for 127.0.0.1 at 2013-04-01 18:40:04 +0400
+Processing by ArticlesController#index as */*
+  Rendered articles/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 1.3ms)
+Started GET "/articles?user=true" for 127.0.0.1 at 2013-04-01 18:40:04 +0400
+Processing by ArticlesController#index as */*
+  Parameters: {"user"=>"true"}
+  Rendered articles/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 18ms (Views: 6.5ms | ActiveRecord: 3.7ms)
