@@ -15,4 +15,5 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
-spec/dummy/log
+spec/dummy/log/*
+spec/dummy/db/*.sqlite3
