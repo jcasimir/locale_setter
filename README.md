@@ -42,10 +42,11 @@ i18n    = I18n
 LocaleSetter::Generic.set_locale(i18n,
                                 {:env => request,
                                  :params => params,
-                                 :user => user})
+                                 :user => user,
+                                 :domain => domain})
 ```
 
-The `i18n.locale=` will be called with the local selected from the passed data. `:env`, `:params`, and `:user` are all optional.
+The `i18n.locale=` will be called with the local selected from the passed data. `:env`, `:params`, `:domain` and `:user` are all optional.
 
 ## How It Works
 
@@ -53,8 +54,9 @@ One of the challenges with internationalization is knowing which locale a user a
 
 1. URL Parameter
 2. User Preference
-3. HTTP Headers
-4. Default
+3. Domain Specific
+4. HTTP Headers
+5. Default
 
 ### URL Parameter
 
@@ -138,6 +140,19 @@ LocaleSetter::User.locale_method = :my_locale
 ```
 
 Subsequent calls to `LocaleSetter::User.for` will use the specified method.
+
+### Locale-per-domain
+
+You could specify prefered locale according to the domain (or subdomain). Just specify config hash like this:
+
+```ruby
+LocaleSetter::Domain.localized_domains = {
+  "en.domain.com" => :en,
+  "es.domain.com" => :es
+}
+```
+
+
 
 ### HTTP Headers
 
