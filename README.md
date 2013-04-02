@@ -36,16 +36,17 @@ The library can be used outside of Rails by accessing `LocaleSetter::Generic` di
 request = {'HTTP_ACCEPT_LANGUAGE' = 'en,es;0.6'}
 params  = {:locale = 'en'}
 user    = User.first
-i18n    = I18n 
+i18n    = I18n
 
 # Set the .locale of I18n
 LocaleSetter::Generic.set_locale(i18n,
                                 {:env => request,
                                  :params => params,
-                                 :user => user})
+                                 :user => user,
+                                 :domain => domain})
 ```
 
-The `i18n.locale=` will be called with the local selected from the passed data. `:env`, `:params`, and `:user` are all optional.
+The `i18n.locale=` will be called with the local selected from the passed data. `:env`, `:params`, `:domain` and `:user` are all optional.
 
 ## How It Works
 
@@ -53,14 +54,15 @@ One of the challenges with internationalization is knowing which locale a user a
 
 1. URL Parameter
 2. User Preference
-3. HTTP Headers
-4. Default
+3. Domain Specific
+4. HTTP Headers
+5. Default
 
 ### URL Parameter
 
 As a developer or designer, it's incredibly handy to be able to manipulate the URL to change locales. You might even use this with CI to run your integration tests using each locale you support.
 
-If you're currently using the default locale for the application, generated URLs on your site will be untouched. 
+If you're currently using the default locale for the application, generated URLs on your site will be untouched.
 
 For example, say my default is `:en` for English and I am viewing in English, my URL might look like:
 
@@ -100,7 +102,7 @@ http://example.com/articles/1&locale=es
 
 #### Non-Supported Locales
 
-If the locale specified in the URL is not supported, `LocaleSetter` will revert to the default locale. 
+If the locale specified in the URL is not supported, `LocaleSetter` will revert to the default locale.
 
 Note that care has been taken to prevent a symbol-table-overflow denial of service attack. Unsupported locales are not symbolized, so there is no danger.
 
@@ -138,6 +140,17 @@ LocaleSetter::User.locale_method = :my_locale
 ```
 
 Subsequent calls to `LocaleSetter::User.for` will use the specified method.
+
+### Locale-per-domain
+
+You could specify prefered locale according to the domain (or subdomain). Just specify config hash like this:
+
+```ruby
+LocaleSetter::Domain.localized_domains = {
+  "en.domain.com" => :en,
+  "es.domain.com" => :es
+}
+```
 
 ### HTTP Headers
 
