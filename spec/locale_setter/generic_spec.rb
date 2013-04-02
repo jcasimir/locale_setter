@@ -8,7 +8,7 @@ describe LocaleSetter::Generic do
     context "with nothing" do
       it "uses the default" do
         setter.set_locale(i18n)
-        i18n.locale.should == i18n.default_locale
+        expect(i18n.locale).to eq(i18n.default_locale)
       end
     end
 
@@ -18,18 +18,18 @@ describe LocaleSetter::Generic do
       it "makes use of the HTTP headers" do
         i18n.available_locales = [:en, :es]
         setter.set_locale(i18n, {:env => request})
-        i18n.locale.should == :es
+        expect(i18n.locale).to eq(:es)
       end
 
       it "only sets an available locale" do
         i18n.available_locales = [:arr, :en]
         setter.set_locale(i18n, {:env => request})
-        i18n.locale.should == :en
+        expect(i18n.locale).to eq(:en)
       end
 
       it "does nothing when HTTP_ACCEPT_LANGUAGE is missing" do
         setter.set_locale(i18n, {:env => {}})
-        i18n.locale.should == i18n.default_locale
+        expect(i18n.locale).to eq(i18n.default_locale)
       end
     end
 
@@ -38,7 +38,7 @@ describe LocaleSetter::Generic do
         i18n.available_locales = [:en, :user_specified]
         user = OpenStruct.new( {:locale => :user_specified} )
         setter.set_locale(i18n, {:user => user} )
-        i18n.locale.should == :user_specified
+        expect(i18n.locale).to eq(:user_specified)
       end
     end
 
@@ -47,7 +47,7 @@ describe LocaleSetter::Generic do
         i18n.available_locales = [:en, :domain_specified]
         LocaleSetter::Domain.localized_domains = { "localized_domain.com" => :domain_specified }
         setter.set_locale(i18n, {:domain => "localized_domain.com"} )
-        i18n.locale.should == :domain_specified
+        expect(i18n.locale).to eq(:domain_specified)
       end
     end
 
@@ -60,13 +60,13 @@ describe LocaleSetter::Generic do
 
       it "uses the URL parameter" do
         setter.set_locale(i18n, {:params => params} )
-        i18n.locale.should == :param_specified
+        expect(i18n.locale).to eq(:param_specified)
       end
 
       it "only allows supported locales" do
         i18n.available_locales = [:en]
         setter.set_locale(i18n, {:params => params} )
-        i18n.locale.should == i18n.default_locale
+        expect(i18n.locale).to eq(i18n.default_locale)
       end
 
       it "does not pollute the symbol table when given an unsuported locale" do
