@@ -22,7 +22,7 @@ module LocaleSetter
     end
 
     def self.locale_method=(method_name)
-      warn "Deprecation warning. You should use new block syntax for configuration."
+      warn "Deprecation warning. You should use a new block syntax for configuration."
       LocaleSetter.config.user_locale_method = method_name
     end
   end

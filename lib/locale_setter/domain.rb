@@ -10,7 +10,7 @@ module LocaleSetter
     end
 
     def self.localized_domains=(domains)
-      warn "Deprecation warning. You should use new block syntax for configuration."
+      warn "Deprecation warning. You should use a new block syntax for configuration."
       LocaleSetter.config.localized_domains = domains
     end
   end
