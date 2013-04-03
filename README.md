@@ -58,6 +58,22 @@ One of the challenges with internationalization is knowing which locale a user a
 4. HTTP Headers
 5. Default
 
+### Configuration
+
+`LocaleSetter` could be configured via block. Here are the defaults:
+
+```ruby
+LocaleSetter.configure do |config|
+  config.url_param           = :locale
+  config.user_locale_method  = :locale
+  config.localized_domains   = {}
+  config.current_user_method = :current_user
+end
+```
+
+So if you want to change the defaults then call this method anytime after the library is loaded, like in a Rails initializer.
+
+
 ### URL Parameter
 
 As a developer or designer, it's incredibly handy to be able to manipulate the URL to change locales. You might even use this with CI to run your integration tests using each locale you support.
@@ -110,6 +126,8 @@ Note that care has been taken to prevent a symbol-table-overflow denial of servi
 
 If your system has authentication, then you likely use have a `current_user` helper method available. `LocaleSetter` will call `locale` on current user, expecting to get back a string response.
 
+Both method names(`current_user` & `locale`) could be changed via config block.
+
 #### Storing a User Preference
 
 The easiest solution is to add a column to your users table:
@@ -129,27 +147,17 @@ Then, allow them to edit this preference wherever they edit other profile items 
 
 Remember that you may need to modify the `user.rb` if you're filtering mass-assignment parameters.
 
-#### Using a Different Method / Column
-
-`LocaleSetter::User` can be configured to call a method other than `.locale` on the user.
-
-Anytime after the library is loaded, like in a Rails initializer, use the `locale_method=` method:
-
-```ruby
-LocaleSetter::User.locale_method = :my_locale
-```
-
-Subsequent calls to `LocaleSetter::User.for` will use the specified method.
-
 ### Locale-per-domain
 
-You could specify prefered locale according to the domain (or subdomain). Just specify config hash like this:
+You could specify prefered locale according to the domain (or subdomain). Just specify domains hash via config block:
 
 ```ruby
-LocaleSetter::Domain.localized_domains = {
-  "en.domain.com" => :en,
-  "es.domain.com" => :es
-}
+LocaleSetter.configure do |config|
+  config.localized_domains = {
+    "en.domain.com" => :en,
+    "es.domain.com" => :es
+  }
+end
 ```
 
 ### HTTP Headers
