@@ -30,10 +30,10 @@ module LocaleSetter
 
     def default_params
       {
-        url_param: URL_PARAM,
-        user_locale_method: USER_METHOD,
-        localized_domains: {},
-        current_user_method: CURRENT_USER_METHOD
+        :url_param => URL_PARAM,
+        :user_locale_method => USER_METHOD,
+        :localized_domains => {},
+        :current_user_method => CURRENT_USER_METHOD
       }
     end
   end

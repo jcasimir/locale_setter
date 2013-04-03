@@ -60,7 +60,7 @@ One of the challenges with internationalization is knowing which locale a user a
 
 ### Configuration
 
-`LocaleSetter` could be configured via block. Here are the defaults:
+`LocaleSetter` can be configured via block. Here are the defaults:
 
 ```ruby
 LocaleSetter.configure do |config|
@@ -71,8 +71,8 @@ LocaleSetter.configure do |config|
 end
 ```
 
-So if you want to change the defaults then call this method anytime after the library is loaded, like in a Rails initializer.
-
+So if you want to change the defaults then call this method any time after
+the library is loaded, like in a Rails initializer.
 
 ### URL Parameter
 
@@ -126,7 +126,7 @@ Note that care has been taken to prevent a symbol-table-overflow denial of servi
 
 If your system has authentication, then you likely use have a `current_user` helper method available. `LocaleSetter` will call `locale` on current user, expecting to get back a string response.
 
-Both method names(`current_user` & `locale`) could be changed via config block.
+Both method names(`current_user` & `locale`) can be changed via config block.
 
 #### Storing a User Preference
 
