@@ -60,7 +60,7 @@ One of the challenges with internationalization is knowing which locale a user a
 
 ### Configuration
 
-`LocaleSetter` can be configured via block. Here are the defaults:
+`LocaleSetter` can be configured via a block. Here are the defaults:
 
 ```ruby
 LocaleSetter.configure do |config|
@@ -126,7 +126,7 @@ Note that care has been taken to prevent a symbol-table-overflow denial of servi
 
 If your system has authentication, then you likely use have a `current_user` helper method available. `LocaleSetter` will call `locale` on current user, expecting to get back a string response.
 
-Both method names(`current_user` & `locale`) can be changed via config block.
+Both method names(`current_user` & `locale`) can be changed via a config block.
 
 #### Storing a User Preference
 
@@ -149,7 +149,8 @@ Remember that you may need to modify the `user.rb` if you're filtering mass-assi
 
 ### Locale-per-domain
 
-You could specify prefered locale according to the domain (or subdomain). Just specify domains hash via config block:
+You could specify prefered locale according to the domain (or subdomain).
+Just specify domains hash via config block:
 
 ```ruby
 LocaleSetter.configure do |config|
