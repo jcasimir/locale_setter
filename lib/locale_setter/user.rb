@@ -10,21 +10,20 @@ end
 
 module LocaleSetter
   module User
-    @@user_locale_method = :locale
-
     def self.for(user, available)
-      if user && user.respond_to?(locale_method) && 
+      if user && user.respond_to?(locale_method) &&
          user.send(locale_method) && !user.send(locale_method).empty?
         LocaleSetter::Matcher.match user.send(locale_method), available
       end
     end
 
     def self.locale_method
-      @@user_locale_method
+      LocaleSetter.config.user_locale_method
     end
 
     def self.locale_method=(method_name)
-      @@user_locale_method = method_name
+      warn "Deprecation warning. You should use a new block syntax for configuration."
+      LocaleSetter.config.user_locale_method = method_name
     end
   end
 end
