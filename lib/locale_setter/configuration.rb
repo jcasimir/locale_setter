@@ -3,6 +3,6 @@ class Configuration
     :http_header, :current_user_method
 
   def initialize(options)
-    options.each_pair { |k, v| public_send(:"#{k}=", v) }
+    options.each_pair { |k, v| send(:"#{k}=", v) }
   end
 end
