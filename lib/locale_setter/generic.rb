@@ -32,8 +32,8 @@ module LocaleSetter
     end
 
     def self.from_params(params, available)
-      if params && params[URL_PARAM]
-        LocaleSetter::Param.for(params[URL_PARAM], available)
+      if params && params[LocaleSetter.config.url_param]
+        LocaleSetter::Param.for(params[LocaleSetter.config.url_param], available)
       end
     end
   end

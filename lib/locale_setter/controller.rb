@@ -8,7 +8,7 @@ module LocaleSetter
       if i18n.locale == i18n.default_locale
         options
       else
-        {URL_PARAM => i18n.locale}.merge(options)
+        {LocaleSetter.config.url_param => i18n.locale}.merge(options)
       end
     end
 
@@ -23,9 +23,8 @@ module LocaleSetter
     end
 
     def locale_user
-      if respond_to?(:current_user) && current_user
-        current_user
-      end
+      current_user_method = LocaleSetter.config.current_user_method.to_sym
+      send(current_user_method) if respond_to?(current_user_method)
     end
 
     def i18n
