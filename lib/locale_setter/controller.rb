@@ -17,7 +17,7 @@ module LocaleSetter
         i18n,
         {:params => params,
          :user   => locale_user,
-         :domain => request.domain,
+         :domain => request.host,
          :env    => request.env}
       )
     end
